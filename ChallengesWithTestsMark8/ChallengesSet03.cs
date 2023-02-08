@@ -50,20 +50,19 @@ namespace ChallengesWithTestsMark8
 
         public bool PasswordContainsUpperLowerAndNumber(string password)
         {
-            throw new NotImplementedException();
+            return password.Any(char.IsUpper) && password.Any(char.IsLower) && password.Any(char.IsDigit);
         }
 
         public char GetFirstLetterOfString(string val)
         {
-            char value = val => IList<char>.First<char>;
-            char answer = value;
-
+            char answer = val[0];
             return answer;
         }
 
         public char GetLastLetterOfString(string val)
         {
-            throw new NotImplementedException();
+            var lastOne = val.Last();
+            return lastOne;
         }
 
         public decimal Divide(decimal dividend, decimal divisor)
@@ -79,32 +78,24 @@ namespace ChallengesWithTestsMark8
 
         public int LastMinusFirst(int[] nums)
         {
-            throw new NotImplementedException();
+            var answer = nums.Last() - nums.First();
+            return answer;
         }
 
         public int[] GetOddsBelow100()
         {
             List<int> nums = new List<int>();
 
-            for (var i = 1 ; i <= 100; i++)
+            for (var i = 0 ; i <= 100; i++)
             {
-                if (!(i % 2 == 0))
+                if (i % 2 == 1)
                 {
                     nums.Add(i);
                 }
             }
-            int count = nums.Count;
 
-            int[] myOdds = new int[count];
-
-            foreach (var item in nums)
-            {
-                for (var j = 0; j < count; j++)
-                {
-                    myOdds[j] = item;
-                }
-            }
-            return myOdds;
+            var ints = nums.ToArray();
+            return ints;
         }
 
         public void ChangeAllElementsToUppercase(string[] words)
