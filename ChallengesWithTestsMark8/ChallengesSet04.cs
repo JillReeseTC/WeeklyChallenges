@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 
 namespace ChallengesWithTestsMark8
@@ -41,37 +43,121 @@ namespace ChallengesWithTestsMark8
 
         public int GetSmallestNumber(int number1, int number2, int number3, int number4)
         {
-            throw new NotImplementedException();
+            var smallest = number1;
+            smallest = (smallest > number2) ? number2 : smallest;
+            smallest = (smallest > number3) ? number3 : smallest;
+            smallest = (smallest > number4) ? number4 : smallest;
+
+            return smallest;
         }
 
         public void ChangeBusinessNameTo_TrueCoders(Business biz)
         {
-            throw new NotImplementedException();
+            biz.Name = "TrueCoders";
         }
 
         public bool CouldFormTriangle(int sideLength1, int sideLength2, int sideLength3)
         {
-            throw new NotImplementedException();
+            var side1Yes = sideLength1 + sideLength2 > sideLength3;
+            var side2Yes = sideLength1 + sideLength3 > sideLength2;
+            var side3Yes = sideLength2 + sideLength3 > sideLength1;
+
+            return side1Yes && side2Yes && side3Yes;
         }
 
         public bool IsStringANumber(string input)
         {
-            throw new NotImplementedException();
+            var signed = -1;
+            var j = -1;
+            var oneDecimal = 'n';
+            if (input == null || input == "") { return false; }
+
+            //List of digits and . that could be in the number
+            List<char> numbers = new List<char> { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.' };
+            if (input[0] == '+' || input[0] == '-')
+            {
+                signed = 1;
+            }
+            else
+            {
+                signed = 0;
+            }
+
+            for (j = signed; j < input.Length; j++)
+
+            {
+                if (char.IsDigit(input[j]) || input[j] == '.')
+                {
+                    continue;
+                }
+                else if (input[j] == '.')
+                {
+                    if (oneDecimal == 'y')
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        oneDecimal = 'y';
+                    }
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            return true;
         }
 
         public bool MajorityOfElementsInArrayAreNull(object[] objs)
         {
-            throw new NotImplementedException();
+            var nullObj = 0;
+            foreach (object obj in objs)
+            {
+                if (obj == null)
+                {
+                    nullObj++;
+                }
+            }
+            return nullObj > objs.Length * .5;
         }
 
         public double AverageEvens(int[] numbers)
         {
-            throw new NotImplementedException();
+            double answer = 0.0;
+            //null check
+            if (numbers == null || numbers.Length == 0) { return 0; }
+
+            var evenOnes = numbers.Where(x => x % 2 == 0);
+            
+            //If there were no even values, don't divide by 0. Just return 0.
+            if (evenOnes.Count() != 0)
+            {
+                answer = evenOnes.Average(x => x);
+            }
+            else
+            {
+                return 0;
+            }
+
+            return answer;
         }
 
         public int Factorial(int number)
         {
-            throw new NotImplementedException();
+            if (number < 0)
+            {
+                throw new ArgumentOutOfRangeException();
+            }
+            if (number == 0) { return 1; }
+
+            int answer = 1;
+
+            for (var i = number; i > 0; i--)
+            {
+                answer *= i;
+            }
+            return answer;
         }
     }
 }
