@@ -102,7 +102,8 @@ namespace ChallengesWithTestsMark8.Tests
         [InlineData(new int[] { 10, 3, 1, 1, 1, 5, 1 }, 3)]
         [InlineData(new int[] { 1, 2, 2, 3, 3, 3, 3, 2, 5 }, 4)]
         [InlineData(new int[] { 1, 2, 2, 3, 3, 3, 3 }, 4)]
-        [InlineData(new int[] { 1, 2, 2, 3, 2 }, 2)]
+        [InlineData(new int[] { 1, 2, 2, 3, 2
+        }, 2)]
         [InlineData(new int[] { 3, 3, 3, 2, 2 }, 3)]
         [InlineData(new int[] { 1, 3, 2, 3, 3, 3, 3 }, 4)]
         public void MaxConsecutiveCount(int[] numbers, int expected)

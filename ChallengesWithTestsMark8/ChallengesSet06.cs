@@ -71,11 +71,54 @@ namespace ChallengesWithTestsMark8
             //null and empty string check
             if (str == null || str == "") return -1;
 
-            foreach (var thing in str)
+            //Build a list to hold the unique values in the string
+            List<char> uniqueValues = new List<char>();
+            char letter = ' ';
+            char unique = ' ';
+            Dictionary<char, int> distinctValues = new Dictionary<char, int>();
+            for (var i = 0; i < str.Length; i++)
             {
-                return -1; 
+                if (i == 0)
+                {
+                    letter = str[i];
+                    distinctValues.Add(str[i], 1);
+                }
+                else if (letter == str[i] && i != 0)
+                {
+                    letter = str[i];
+                    distinctValues[str[i]] += 1;
+                }
+                else
+                {
+                    if (distinctValues.ContainsKey(str[i]))
+                    {
+                        distinctValues[str[i]] += 1;
+                    }
+                    else
+                    {
+                        distinctValues.Add(str[i], 1);
+                    }
+                    letter = str[i];
+                }
             }
-            return 0;
+
+            foreach (var item in distinctValues) 
+            {
+                if (item.Value == 1) 
+                { 
+                    uniqueValues.Add(item.Key); 
+                }
+            }
+            
+            //Now loop through the str from the back and the first unique is the last one
+            for (var i = str.Length -1; i >=0; i--)
+            {
+                foreach (var thing in uniqueValues)
+                {
+                    if (str[i] == thing) return i;
+                } 
+            }
+            return -1;
         }
 
         public int MaxConsecutiveCount(int[] numbers)
@@ -93,6 +136,7 @@ namespace ChallengesWithTestsMark8
                 }
                 else if (num == numbers[i] && i != 0)
                 {
+                    num = numbers[i];
                     count++;
                 }
                 else
@@ -105,6 +149,7 @@ namespace ChallengesWithTestsMark8
                     count = 1;
                 }
             }
+            if (count > maxcount) { maxcount = count; }
             return maxcount;
         }
 
